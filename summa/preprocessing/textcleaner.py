@@ -172,7 +172,7 @@ def clean_text_by_sentences(text, language="english", additional_stopwords=None)
         filtered_sentences = filter_words(original_sentences)
     
     else:
-
+        
         original_sentences = text
         non_stopword_tokens = lambda tokens: remove_stopwords(tokens)
         filtered_sentences = list(map(non_stopword_tokens, original_sentences))
