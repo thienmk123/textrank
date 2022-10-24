@@ -162,7 +162,7 @@ def merge_syntactic_units(original_units, filtered_units, tags=None):
     return units
 
 
-def clean_text_by_sentences(text, language="english", additional_stopwords=None):
+def clean_text_by_sentences(text, language="english", additional_stopwords=None, rdrsegmenter=None):
     """ Tokenizes a given text into sentences, applying filters and lemmatizing them.
     Returns a SyntacticUnit list. """
     init_textcleanner(language, additional_stopwords)
@@ -172,9 +172,6 @@ def clean_text_by_sentences(text, language="english", additional_stopwords=None)
         filtered_sentences = filter_words(original_sentences)
     
     else:
-        import py_vncorenlp
-    
-        rdrsegmenter = py_vncorenlp.VnCoreNLP(annotators=["wseg"], save_dir=f"{dir_path}/vncorenlp")
 
         original_sentences = rdrsegmenter.word_segment(text)
         non_stopword_tokens = lambda tokens: remove_stopwords(tokens)
