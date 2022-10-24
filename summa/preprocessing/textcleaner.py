@@ -171,7 +171,7 @@ def clean_text_by_sentences(text, language="english", additional_stopwords=None)
     else:
         import py_vncorenlp
     
-        rdrsegmenter = py_vncorenlp.VnCoreNLP(annotators=["wseg"], save_dir="./vncorenlp")
+        rdrsegmenter = py_vncorenlp.VnCoreNLP(annotators=["wseg"], save_dir="vncorenlp")
 
         original_sentences = rdrsegmenter.word_segment(text)
         non_stopword_tokens = lambda tokens: remove_stopwords(tokens)
