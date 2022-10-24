@@ -52,7 +52,8 @@ def set_stopwords_by_language(language, additional_stopwords):
 
 
 def init_textcleanner(language, additional_stopwords):
-    set_stemmer_language(language)
+    if language != "vietnamese":
+        set_stemmer_language(language)
     set_stopwords_by_language(language, additional_stopwords)
 
 
@@ -162,8 +163,19 @@ def clean_text_by_sentences(text, language="english", additional_stopwords=None)
     """ Tokenizes a given text into sentences, applying filters and lemmatizing them.
     Returns a SyntacticUnit list. """
     init_textcleanner(language, additional_stopwords)
-    original_sentences = split_sentences(text)
-    filtered_sentences = filter_words(original_sentences)
+
+    if language != "vietnamese":
+        original_sentences = split_sentences(text)
+        filtered_sentences = filter_words(original_sentences)
+    
+    else:
+        import py_vncorenlp
+
+        rdrsegmenter = py_vncorenlp.VnCoreNLP(annotators=["wseg"], save_dir="")
+
+        original_sentences = rdrsegmenter.word_segment(text)
+        non_stopword_tokens = lambda tokens: remove_stopwords(tokens)
+        filtered_sentences = list(map(non_stopword_tokens, original_sentences))
 
     return merge_syntactic_units(original_sentences, filtered_sentences)
 

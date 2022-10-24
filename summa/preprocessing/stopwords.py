@@ -191,6 +191,9 @@ arabic = """أنت كليكما اللتان بنا هما إذا اللواتي
 كم اللائي حيث ليستا هؤلاء بماذا ليت هيت بهم لهن التي لولا لو لهم هناك ثم سوف كيفما لستم لما ذينك بلى لا تلكم على لاسيما به بي اللذان أي ذه لن عل أو ريث أنتما
 """
 
+vietnamese = """
+"""
+
 LANGUAGES = {
     "danish": danish,
     "english": english,
@@ -200,7 +203,8 @@ LANGUAGES = {
     "swedish": swedish,
     "italian": italian,
     "polish": polish,
-    "arabic": arabic
+    "arabic": arabic,
+    "vietnamese": vietnamese,
 }
 
 
